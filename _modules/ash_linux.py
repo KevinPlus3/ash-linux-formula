@@ -78,7 +78,7 @@ def _modify_grub_file(rmv_fips_arg):
             # No boot= in grub, so find mount where kernel is located.
             boot_mount = _get_boot_mount()
             # Add boot= argument if a boot mount exists.
-            if boot_mount:
+            if boot_mount or boot_mount == '/':
                 grub_args.append('boot={0} '.format(boot_mount))
 
         check = __salt__['file.search'](filepath, 'fips=1')
